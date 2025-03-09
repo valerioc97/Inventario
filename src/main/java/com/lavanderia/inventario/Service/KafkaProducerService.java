@@ -24,4 +24,8 @@ public class KafkaProducerService {
     public void sendMessage1(CapoDto message) {
         kafkaTemplate.send("test-topic", message);
     }
+
+    public void sendMessage2(CapoDto message){
+        kafkaTemplate.send("SALVA_CAPO", message);
+    }
 }

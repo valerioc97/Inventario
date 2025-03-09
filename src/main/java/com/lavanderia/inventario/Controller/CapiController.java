@@ -38,8 +38,13 @@ public class CapiController {
     }
 
     @PostMapping("/capiKafkaTemplate1")
-    public ResponseEntity<String> getCapiKafka1(@RequestBody CapoDto capoDto){
-        kafkaProducerService.sendMessage1(capoDto);
+    public ResponseEntity<String> getCapiKafka1(@RequestBody CapoDto capoDto, @RequestParam Integer selezionaCoda){
+        if(selezionaCoda != null && selezionaCoda == 1){
+            kafkaProducerService.sendMessage1(capoDto);
+        } else if (selezionaCoda != null && selezionaCoda == 2) {
+            kafkaProducerService.sendMessage2(capoDto);
+        }
+
         return ResponseEntity.ok("Message sent to Kafka");
     }
 }
